@@ -74,5 +74,4 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'projet9backend'
-          slot-name: 'Production'
           
