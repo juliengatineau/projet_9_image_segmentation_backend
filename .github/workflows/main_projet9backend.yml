@@ -16,8 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true 
 
       - name: Set up Python version
         uses: actions/setup-python@v5
@@ -67,13 +65,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A0A59E1331064BE58C8E207CD5972325 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA5578459CEA41739D688A430D8C706F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_06A920A0F1AE415E99278084CD5D3A59 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F8B85E7D351E470B958553FB17E16DB6 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E2D5A24794FF462B890C4882A48BD831 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CA3D1355C9CA40DBA86A540908D969F8 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'projet9backend'
+          slot-name: 'Production'
           
