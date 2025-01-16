@@ -49,7 +49,7 @@ def download_model_from_drive(drive_url, destination):
 
 
 # URL du modèle sur Google Drive (lien de téléchargement direct)
-drive_url = 'https://drive.google.com/uc?export=download&id=10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn'
+drive_url = 'https://drive.google.com/file/d/10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn/view?usp=drive_link'
 model_path = os.path.join(model_dir, "sernet_model.pth")
 
 # Télécharger le modèle depuis Google Drive
