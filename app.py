@@ -21,7 +21,7 @@ model_path = "./model/sernet_model.pth"
 
 # Load the Keras model
 preprocess = DeepLabV3_ResNet101_Weights.DEFAULT.transforms()
-sernet_model = torch.load('model/sernet_model.pth')
+sernet_model = torch.load(model_path, map_location=torch.device('cpu'))
 sernet_model.eval()
 
 
