@@ -29,6 +29,8 @@ model_dir = './model'
 try:
     os.makedirs(model_dir, exist_ok=True)
     logging.info(f"Dossier '{model_dir}' créé avec succès ou déjà existant.")
+    # Lister les fichiers dans le répertoire actuel
+    logging.info(f"Contenu du répertoire actuel : {os.listdir(os.getcwd())}")
 except Exception as e:
     logging.error(f"Erreur lors de la création du dossier '{model_dir}': {e}")
 
