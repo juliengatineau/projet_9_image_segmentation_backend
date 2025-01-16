@@ -4,12 +4,35 @@ import os
 from PIL import Image
 import numpy as np
 from matplotlib import colors
+import requests
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 
 import torch
 from torchvision.models.segmentation import DeepLabV3_ResNet101_Weights
+
+
+# --------------------------------------------------------------------
+# DOWNLOAD MODEL
+# --------------------------------------------------------------------
+
+def download_model_from_drive(drive_url, destination):
+    if not os.path.exists(destination):
+        response = requests.get(drive_url, stream=True)
+        response.raise_for_status()
+        with open(destination, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+
+os.makedirs('./model', exist_ok=True)
+
+# URL du modèle sur Google Drive
+drive_url = 'https://drive.google.com/file/d/10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn/view?usp=sharing'
+model_path = "./model/sernet_model.pth"
+
+# Télécharger le modèle depuis Google Drive
+download_model_from_drive(drive_url, model_path)
 
 
 # --------------------------------------------------------------------
