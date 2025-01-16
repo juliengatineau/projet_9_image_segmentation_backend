@@ -3,8 +3,8 @@ numpy==1.26.4
 matplotlib==3.8.4
 pillow==10.3.0
 --find-links https://download.pytorch.org/whl/torch_stable.html
-torch==2.3.1+cpu
+torch==2.5.1+cpu
 --find-links https://download.pytorch.org/whl/torch_stable.html
-torchvision==0.18.1+cpu 
+torchvision==0.20.1+cpu 
 pytest==8.2.0
 azure-monitor-opentelemetry==1.4.2
