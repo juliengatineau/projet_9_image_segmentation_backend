@@ -18,6 +18,8 @@ logger.addHandler(handler)
 import torch
 from torchvision.models.segmentation import DeepLabV3_ResNet101_Weights
 
+# Afficher le chemin de travail actuel
+logging.info(f"Chemin de travail actuel : {os.getcwd()}")
 
 # --------------------------------------------------------------------
 # DOWNLOAD MODEL
