@@ -25,11 +25,11 @@ def download_model_from_drive(drive_url, destination):
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
 
-os.makedirs('./model', exist_ok=True)
+
 
 # URL du modèle sur Google Drive
-drive_url = 'https://drive.google.com/file/d/10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn/view?usp=sharing'
-model_path = "./model/sernet_model.pth"
+drive_url = 'https://drive.google.com/uc?export=download&id=10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn'
+model_path = "./sernet_model.pth"
 
 # Télécharger le modèle depuis Google Drive
 download_model_from_drive(drive_url, model_path)
@@ -40,7 +40,7 @@ download_model_from_drive(drive_url, model_path)
 # --------------------------------------------------------------------
 
 # Path to the Keras model
-model_path = "./model/sernet_model.pth"
+model_path = "./sernet_model.pth"
 
 # Load the Keras model
 preprocess = DeepLabV3_ResNet101_Weights.DEFAULT.transforms()
