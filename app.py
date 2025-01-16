@@ -17,6 +17,15 @@ from torchvision.models.segmentation import DeepLabV3_ResNet101_Weights
 # DOWNLOAD MODEL
 # --------------------------------------------------------------------
 
+model_dir = './model'
+try:
+    os.makedirs(model_dir, exist_ok=True)
+    logging.info(f"Dossier '{model_dir}' créé avec succès ou déjà existant.")
+except Exception as e:
+    logging.error(f"Erreur lors de la création du dossier '{model_dir}': {e}")
+
+
+# Fonction pour télécharger le modèle depuis Google Drive
 def download_model_from_drive(drive_url, destination):
     if not os.path.exists(destination):
         response = requests.get(drive_url, stream=True)
@@ -24,12 +33,14 @@ def download_model_from_drive(drive_url, destination):
         with open(destination, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
+        logging.info(f"Modèle téléchargé avec succès à '{destination}'")
+    else:
+        logging.info(f"Le modèle existe déjà à '{destination}'")
 
 
-
-# URL du modèle sur Google Drive
+# URL du modèle sur Google Drive (lien de téléchargement direct)
 drive_url = 'https://drive.google.com/uc?export=download&id=10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn'
-model_path = "./sernet_model.pth"
+model_path = os.path.join(model_dir, "sernet_model.pth")
 
 # Télécharger le modèle depuis Google Drive
 download_model_from_drive(drive_url, model_path)
@@ -40,7 +51,7 @@ download_model_from_drive(drive_url, model_path)
 # --------------------------------------------------------------------
 
 # Path to the Keras model
-model_path = "./sernet_model.pth"
+model_path = "./model/sernet_model.pth"
 
 # Load the Keras model
 preprocess = DeepLabV3_ResNet101_Weights.DEFAULT.transforms()
