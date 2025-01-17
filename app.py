@@ -124,7 +124,7 @@ def predict():
     predicted_mask_filename = request.form.get('predicted_mask_filename')
 
     # Preprocess
-    #image = Image.open(image_path).convert("RGB")
+    image = Image.open(image_path).convert("RGB")
     input_tensor = preprocess(image_path)
     input_batch = input_tensor.unsqueeze(0)
 
