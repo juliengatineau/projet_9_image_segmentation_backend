@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 from matplotlib import colors
 import requests
+from io import BytesIO
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -137,8 +138,13 @@ def predict():
     predicted_mask = output.argmax(dim=1).cpu().numpy()[0]
     mask = Image.fromarray(generate_img_from_mask_sernet(predicted_mask))
 
+    # Convert the PIL image to a BytesIO object
+    img_io = BytesIO()
+    mask.save(img_io, 'PNG')
+    img_io.seek(0)
+
     # Return the image as a response
-    return send_file(mask, mimetype='image/png', as_attachment=True, download_name=predicted_mask_filename)
+    return send_file(img_io, mimetype='image/png', as_attachment=True, download_name=predicted_mask_filename)
         
 
 if __name__ == '__main__':
