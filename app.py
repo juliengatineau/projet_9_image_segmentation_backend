@@ -35,10 +35,17 @@ except Exception as e:
     logging.error(f"Erreur lors de la création du dossier '{model_dir}': {e}")
 
 
-# Fonction pour télécharger le modèle depuis Google Drive
-def download_model_from_drive(drive_url, destination):
+# Fonction pour télécharger le modèle depuis Github
+def download_model_from_github(repo_owner, repo_name, release_tag, asset_name, destination):
+    url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases/tags/{release_tag}'
+    response = requests.get(url)
+    response.raise_for_status()
+    release = response.json()
+    asset = next(item for item in release['assets'] if item['name'] == asset_name)
+    download_url = asset['browser_download_url']
+    
     if not os.path.exists(destination):
-        response = requests.get(drive_url, stream=True)
+        response = requests.get(download_url, stream=True)
         response.raise_for_status()
         with open(destination, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
@@ -47,14 +54,15 @@ def download_model_from_drive(drive_url, destination):
     else:
         logging.info(f"Le modèle existe déjà à '{destination}'")
 
+# Informations sur la release GitHub
+repo_owner = 'juliengatineau'
+repo_name = 'projet_9_backend'
+release_tag = 'v1.0.0'
+asset_name = 'sernet_model.pth'
+model_path = os.path.join(model_dir, asset_name)
 
-# URL du modèle sur Google Drive (lien de téléchargement direct)
-drive_url = 'https://drive.google.com/file/d/10I6Biwyvv8Xc2Vtx6YScaZZDTfoznbkn/view?usp=drive_link'
-model_path = os.path.join(model_dir, "sernet_model.pth")
-
-# Télécharger le modèle depuis Google Drive
-download_model_from_drive(drive_url, model_path)
-
+# Télécharger le modèle depuis la release GitHub
+download_model_from_github(repo_owner, repo_name, release_tag, asset_name, model_path)
 
 # --------------------------------------------------------------------
 # VARIABLES
