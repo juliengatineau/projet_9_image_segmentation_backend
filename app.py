@@ -125,7 +125,7 @@ def predict():
 
     # Preprocess
     image = Image.open(image_path).convert("RGB")
-    input_tensor = preprocess(image_path)
+    input_tensor = preprocess(image)
     input_batch = input_tensor.unsqueeze(0)
 
     # Predict
