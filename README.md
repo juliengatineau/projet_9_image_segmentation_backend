@@ -18,10 +18,14 @@ This project is a REST API for image segmentation using a custom PyTorch model. 
 The model is trained to segment images into 8 classes:  
   `void`, `flat`, `construction`, `object`, `nature`, `sky`, `human`, `vehicle`
 
-## Features
 
-- Downloads the trained model automatically from a GitHub release if not present
-- Supports image segmentation with colored class masks
-- Runs fully on CPU (no GPU required)
-- Flask-powered REST API
-- Logs detailed information and status
+## 🛠️ Technologies Used
+
+- **Python 3.8+**
+- **Flask** — lightweight REST API framework
+- **PyTorch** — deep learning framework for model loading and inference
+- **TorchVision** — pretrained models and image transforms
+- **Pillow** — image manipulation
+- **NumPy** — array operations
+- **Matplotlib** — for color conversions
+- **Requests** — to fetch model files from GitHub releases
