@@ -10,7 +10,10 @@ This project is a REST API for image segmentation using a custom PyTorch model. 
 - **Preprocessing**: Uses torchvision's `DeepLabV3_ResNet101_Weights.DEFAULT` transform
 - **Performances**: Score IoU = 0.73
 
-  ![frankfurt_000000_000294_leftImg8bit_baseline_mask](https://github.com/user-attachments/assets/90fe97a3-0564-4df1-9cb7-a0208592f98a)
+  Real mask
+  ![frankfurt_000000_000294_leftImg8bit](https://github.com/user-attachments/assets/04d0ead2-dc7a-446d-bd21-8a8ef477752c)
+
+  Predicted mask
   ![frankfurt_000000_000294_leftImg8bit_sernet_mask](https://github.com/user-attachments/assets/3b4d9960-55c6-49e7-8735-618d6f1c3f41)
 
 The model is trained to segment images into 8 classes:  
